@@ -1,34 +1,26 @@
 function checkAnswer() {
-    // Get the user's selected answer
-    const answerElements = document.querySelectorAll('input[name="quiz"]');
-    let selectedAnswer;
-    for (const element of answerElements) {
-        if (element.checked) {
-            selectedAnswer = element.value;
-            break;
-        }
-    }
+    // Identify the Correct Answer
+    const correctAnswer = "4"; // String value to represent the correct answer
 
-    // Check if an answer is selected
-    if (!selectedAnswer) {
+    // Retrieve the User's Answer
+    const selectedRadioButton = document.querySelector('input[name="quiz"]:checked'); // Select the checked radio button
+    if (!selectedRadioButton) {
         alert("Please select an answer.");
-        return;
+        return; // Exit function if no answer is selected
     }
+    const userAnswer = selectedRadioButton.value;
 
-    // Check if the answer is correct (assuming the correct answer is 4)
-    const correctAnswer = 4;
-    const userAnswer = parseInt(selectedAnswer); // Convert the selected answer to a number
-
-    const feedbackElement = document.getElementById('feedback');
+    // Compare the User's Answer with the Correct Answer
     if (userAnswer === correctAnswer) {
-        feedbackElement.textContent = "Correct! Well done."; // Updated feedback message
+        document.getElementById('feedback').textContent = "Correct! Well done.";
     } else {
-        feedbackElement.textContent = "Incorrect. The answer is " + correctAnswer + ".";
+        document.getElementById('feedback').textContent = "That's incorrect. Try again!";
     }
 }
 
 // Add event listener to the submit button
 const submitButton = document.getElementById('submit-answer');
 submitButton.addEventListener('click', checkAnswer);
+
 
 
